@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="contract_menu" name="Contract Constraint" >
+        <menuitem id="contract_menu_submenu" name="Contract" action="contract_action"/>
+    </menuitem>
+
+</odoo>

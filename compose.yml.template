@@ -1,0 +1,53 @@
+services:
+    agro-db:
+        image: postgres:16
+        container_name: agro-db
+        environment:
+            PGUSER: odoo
+            POSTGRES_USER: odoo
+            POSTGRES_PASSWORD: odoo
+            # LANG: 'es_ES.utf8'
+            INITDB_DATABASE: false
+        volumes:
+            - ./postgresql_data:/var/lib/postgresql/data
+        healthcheck:
+            test: ["CMD-SHELL", "pg_isready", "-U", "odoo"]
+            interval: 10s
+            timeout: 60s
+            retries: 5
+            start_period: 5s
+
+    agro-odoo:
+        image: sidoo.registry.sdi.es/agro:17.0
+        container_name: agro-odoo
+        depends_on:
+            agro-db:
+                condition: service_healthy
+        environment:
+            - odoo_options_db_user=odoo
+            - odoo_options_db_name=agro
+            - odoo_options_db_password=odoo
+            - odoo_options_db_host=agro-db
+            - odoo_options_data_dir=/opt/odoo/data
+            - odoo_options_limit_memory_hard=2684354560
+            - odoo_options_limit_memory_soft=2147483648
+            - odoo_options_limit_request=8192
+            - odoo_options_limit_time_cpu=600
+            - odoo_options_limit_time_real=1200
+            - odoo_options_admin_passwd=7v4a-9hif-43md
+            # ENTRYPOINT_HOOK
+            # - ENTRYPOINT_HOOK=NO_EXEC
+            # - ENTRYPOINT_HOOK=INIT
+            # - ENTRYPOINT_HOOK=UPDATE
+            # - ENTRYPOINT_HOOK=UPDATE_ALL
+        ports:
+            - 8069:8069
+            - 8072:8072
+        volumes:
+            - ./src/custom_addons:/opt/odoo/src/custom_addons:rw,z
+            # Si quieremos usar los addons de OCA
+            # habrá que hacer antes:
+            # gitaggregate -c repos.yaml
+            #- ./src/addons/oca:/opt/odoo/src/addons/oca:rw,z
+            - ./odoo_data:/opt/odoo/data:rw,z
+            - ./odoo_backups:/opt/odoo/backups:rw,z

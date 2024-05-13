@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_contract_tree" model="ir.ui.view">
+        <field name="name">view_contract_tree</field>
+        <field name="model">contract</field>
+        <field name="arch" type="xml">
+            <tree string="Datos">
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_contract_form" model="ir.ui.view">
+        <field name="name">view_contract_form</field>
+        <field name="model">contract</field>
+        <field name="arch" type="xml">
+            <form string="Datos">
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="telephone" widget="phone" />
+                        <field name="mobile" invisible="1" />
+                        <field name="partner_id" string="Empresa: "/>
+                        <field name="partner_email" /> 
+                    </group>
+                    <group>
+                        <group>
+                            <field name="country_id" />
+                        </group>
+                        <group>
+                            <field name="identifier" />
+                            <field name="identification_number" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="contract_action" model="ir.actions.act_window">
+        <field name="name">Datos</field>
+        <field name="res_model">contract</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p>Add</p>
+        </field>
+    </record>
+
+</odoo>
