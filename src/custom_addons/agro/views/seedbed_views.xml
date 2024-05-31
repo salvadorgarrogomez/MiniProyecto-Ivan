@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+    <!-- Tree -->
+    <record id="view_seedbed_tree" model="ir.ui.view">
+        <field name="name">agro_seedbed_tree_view</field>
+        <field name="model">seedbed</field>
+        <field name="arch" type="xml">
+            <tree string="Semillero">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form -->
+    <record id="view_seedbed_form" model="ir.ui.view">
+        <field name="name">agro_seedbed_form_view</field>
+        <field name="model">seedbed</field>
+        <field name="arch" type="xml">
+            <form string="Semillero">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <field name="ciudad_id"/>
+                        <field name="partner_id"/>
+                        <field name="exploitation_id"/>
+                    </group>
+                    <group>
+                        <field name="sectors_size"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Definición de la vista de Kanban
+    <record id="view_seedbed_kanban" model="ir.ui.view">
+        <field name="name">Seedbed Kanban View</field>
+        <field name="model">seedbed</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="oe_kanban_details">
+                                <field name="name"/>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record> -->
+
+    <!-- Actions -->
+    <record id="action_seedbed" model="ir.actions.act_window">
+        <field name="name">Semilleros</field>
+        <field name="res_model">seedbed</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

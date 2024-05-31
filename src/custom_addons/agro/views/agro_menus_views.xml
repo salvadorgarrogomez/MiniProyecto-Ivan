@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="agro_menu_root" name="Agro">
+        <menuitem id="agro_second_level_menu" name="Explotación">
+            <menuitem id="agro_menu_action" action="action_agricultural_holding" />
+            <menuitem id="plantation_menu_submenu" name="Campo">
+                <menuitem id="plantation_second_menu" action="action_plantation" />
+                <menuitem id="farm_second_menu" action="action_farm_window"/>
+                <menuitem id="test_second_menu" action="action_test"/>
+            </menuitem>
+            <menuitem id="seedbed_submenu" name="Semillero" sequence="20">
+                <menuitem id="seedbed_menu_action" action="action_seedbed" />
+            </menuitem>
+        </menuitem>
+    </menuitem>
+</odoo>

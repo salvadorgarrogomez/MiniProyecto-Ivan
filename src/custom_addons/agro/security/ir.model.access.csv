@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+agro.access_agricultural_holding,access_agricultural_holding,agro.model_agricultural_holding,base.group_user,1,1,1,1
+agro.access_plantation,access_plantation,agro.model_plantation,base.group_user,1,1,1,1
+agro.access_farm,access_farm,agro.model_farm,base.group_user,1,1,1,1
+agro.access_seedbed,access_seedbed,agro.model_seedbed,base.group_user,1,1,1,1
