@@ -1,0 +1,24 @@
+<odoo>
+    <!-- Inheriting the existing base.view_partner_tree to add the import button -->
+    <record id="view_partner_form_button_inherit" model="ir.ui.view">
+        <field name="name">res.partner.form.button.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button name="%(action_import_contacts)d" type="action" string="Import Contacts" class="oe_highlight"/>
+                </xpath>
+            </data>
+        </field>
+    </record>
+    
+    <!-- Definir la acción para abrir el asistente de importación -->
+    <record id="action_import_contacts" model="ir.actions.act_window">
+        <field name="name">Import Contacts</field>
+        <field name="res_model">import.contacts.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_import_contacts_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+</odoo>
