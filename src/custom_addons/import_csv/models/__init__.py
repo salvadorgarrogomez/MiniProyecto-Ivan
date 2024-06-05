@@ -1,1 +1,1 @@
-from . import importar_csv
+from . import res_partner
