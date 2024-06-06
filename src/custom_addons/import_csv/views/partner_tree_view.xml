@@ -1,0 +1,38 @@
+<odoo>
+    <record id="view_partner_form_button_inherit" model="ir.ui.view">
+        <field name="name">res.partner.form.button.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button name="%(action_import_contacts)d" type="action" string="Import Contacts" class="oe_highlight"/>
+                </xpath>
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button name="action_download_contacts_csv" type="object" string="Download Contact" class="oe_highlight"/>
+                </xpath>
+                <xpath expr="//field[@name='vat']" position="before">
+                    <field name="external_id" string="External Id" readonly="1"/>
+                </xpath>
+            </data>
+        </field>
+    </record>
+
+    <record id="view_partner_filter_review" model="ir.ui.view">
+        <field name="name">partner.filter.to.review</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <search>
+                <filter string="External Id" name="external_filter" domain="[('external_id', '=', True), ('active', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+    
+    <record id="action_import_contacts" model="ir.actions.act_window">
+        <field name="name">Import Contacts</field>
+        <field name="res_model">import.contacts.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_import_contacts_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+</odoo>
