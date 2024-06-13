@@ -1,0 +1,98 @@
+<odoo>
+    <data>
+        <!-- Definir la acción del reporte -->
+        <record id="actions_partner_report" model="ir.actions.report">
+            <field name="name">Partner Report</field>
+            <field name="model">res.partner</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">import_csv.partner_report_template</field>
+            <field name="binding_model_id" ref="base.model_res_partner" />
+            <field name="binding_type">report</field>
+        </record>
+
+        <!-- Definir la plantilla QWeb -->
+        <template id="partner_report_template">
+            <t t-name="partner_report_template">
+                <t t-call="web.html_container">
+                    <t t-foreach="docs" t-as="partner">
+                        <div class="page">
+                            <h2>Partner Report</h2>
+                            <div class="col-auto col-4 mw-100 mb-2" style="float: right;">
+                                <div t-if="partner.image_1920">
+                                    <img t-att-src="image_data_uri(partner.image_1920)"
+                                        style="max-width: 100%; height: auto;" />
+                                </div>
+                            </div>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <td>
+                                        <strong>Name:</strong>
+                                    </td>
+                                    <td>
+                                        <t t-esc="partner.name" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>External Id:</strong>
+                                    </td>
+                                    <td>
+                                        <t t-esc="partner.external_id" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>TaxId:</strong>
+                                    </td>
+                                    <td>
+                                        <t t-esc="partner.vat" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Email:</strong>
+                                    </td>
+                                    <td>
+                                        <t t-esc="partner.email" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Phone:</strong>
+                                    </td>
+                                    <td>
+                                        <t t-esc="partner.phone" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Mobile:</strong>
+                                    </td>
+                                    <td>
+                                        <t t-esc="partner.mobile" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Address:</strong>
+                                    </td>
+                                    <td>
+                                        <t t-esc="partner.contact_address" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Function:</strong>
+                                    </td>
+                                    <td>
+                                        <t t-esc="partner.function" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>
